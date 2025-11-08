@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Implantação - Safety Park</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity: 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .brand-red {
+            color: #EF4444; /* Cor Vermelha Tailwind - red-500 */
+        }
+        .bg-brand-red {
+            background-color: #EF4444;
+        }
+        .border-brand-red {
+            border-color: #EF4444;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Cabeçalho -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <svg class="w-10 h-10 text-gray-900" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <path d="M10.5 8C10.5 7.17157 11.1716 6.5 12 6.5C12.8284 6.5 13.5 7.17157 13.5 8V12C13.5 12.8284 12.8284 13.5 12 13.5C11.1716 13.5 10.5 12.8284 10.5 12V8Z" fill="currentColor"/>
+                    <path d="M9 16.5C9 15.6716 10.3431 15 12 15C13.6569 15 15 15.6716 15 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <h1 class="text-xl font-bold text-gray-900">SAFETY PARK</h1>
+            </div>
+            
+            <!-- Navegação -->
+            <div class="flex items-center">
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="desktop-menu-btn" class="flex items-center text-gray-600 hover:text-red-500 p-2 rounded-md transition duration-300">
+                            <span>Menu</span>
+                            <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="desktop-dropdown" class="hidden absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="desktop-menu-btn">
+                                <a href="#objetivo" class="dropdown-item block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Objetivo</a>
+                                <a href="#passos" class="dropdown-item block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Processo</a>
+                                <a href="#documentos-rro" class="dropdown-item block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Documentos RRO</a>
+                                <a href="#rotinas-lider" class="dropdown-item block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Rotinas do Líder</a>
+                                <a href="#metas" class="dropdown-item block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Metas</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://forms.gle/q2csWNKgn6LsV3fV7" target="_blank" class="bg-gray-900 text-white py-2 px-4 rounded-lg hover:bg-red-500 transition duration-300">Resumo Semanal</a>
+                </div>
+
+                <!-- Botão Menu Mobile -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-800 focus:outline-none">
+                       <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <!-- Painel Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <a href="#objetivo" class="mobile-item block py-3 px-6 text-gray-700 hover:bg-gray-100">Objetivo</a>
+            <a href="#passos" class="mobile-item block py-3 px-6 text-gray-700 hover:bg-gray-100">Processo</a>
+            <a href="#documentos-rro" class="mobile-item block py-3 px-6 text-gray-700 hover:bg-gray-100">Documentos RRO</a>
+            <a href="#rotinas-lider" class="mobile-item block py-3 px-6 text-gray-700 hover:bg-gray-100">Rotinas do Líder</a>
+            <a href="#metas" class="mobile-item block py-3 px-6 text-gray-700 hover:bg-gray-100">Metas</a>
+            <a href="https://forms.gle/q2csWNKgn6LsV3fV7" target="_blank" class="mobile-item block py-3 px-6 text-gray-700 hover:bg-gray-100">Resumo Semanal</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção Hero -->
+        <section class="bg-gray-900 text-white">
+            <div class="container mx-auto px-6 py-24 md:py-32 text-center">
+                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-wider">Manual de Implantação</h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-300">Ações Operacionais para Excelência</p>
+            </div>
+        </section>
+
+        <!-- Seção Objetivo -->
+        <section id="objetivo" class="py-20 bg-white section-fade-in">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-4">Mais que Estacionamento, <span class="brand-red">um HUB de Mobilidade</span></h2>
+                <p class="max-w-3xl mx-auto text-gray-600 leading-relaxed">
+                    Ao assumir uma operação, a SAFETY PARK ESTACIONAMENTOS vende uma solução completa. Nosso objetivo é criar soluções viáveis que proporcionem aos usuários <strong class="font-semibold">Segurança, Conforto e Praticidade</strong>, resultando em lucratividade ao parceiro e renda aos nossos colaboradores.
+                </p>
+                <div class="mt-10 flex items-center justify-center">
+                     <svg class="w-8 h-8 text-red-500 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25a8.967 8.967 0 011.932 4.267c.42 1.624 1.282 3.09 2.288 4.267M12 2.25a8.967 8.967 0 00-7.218 4.267c-1.006 1.177-1.868 2.643-2.288 4.267M12 2.25V15m0 6.75v-6.75m0 0l-2.288-4.267M12 15l2.288-4.267" />
+                    </svg>
+                    <h3 class="text-2xl font-extrabold tracking-wider text-gray-800 uppercase">O Cliente é Nosso <span class="brand-red">Objetivo!</span></h3>
+                </div>
+                <div class="mt-10 border-l-4 border-brand-red bg-gray-50 p-6 max-w-2xl mx-auto text-left">
+                    <p class="text-xl italic text-gray-700">
+                        "Nosso objetivo é oferecer um serviço de qualidade que proporcione segurança, conforto e praticidade aos nossos clientes, lucratividade e renda aos nossos parceiros e colaboradores."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção dos Passos -->
+        <section id="passos" class="py-20 bg-gray-100 section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">O Processo de Implantação Detalhado</h2>
+                    <p class="text-gray-600 mt-2">Para alcançar nossos objetivos, as seguintes fases e atividades devem ser desenvolvidas.</p>
+                </div>
+
+                <!-- FASE D0 -->
+                <div class="mb-16 p-8 bg-white rounded-lg shadow-lg section-fade-in">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-brand-red text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mr-6">D0</div>
+                        <h3 class="text-2xl font-bold text-gray-900">Fase de Levantamento e Planejamento</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Esta é a fase inicial, onde preparamos todo o terreno para uma implantação de sucesso, garantindo que todos os recursos, materiais e estratégias estejam alinhados.</p>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                            <h4 class="font-bold text-lg mb-3 flex items-center"><svg class="w-6 h-6 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-4.663M12 10.5h.008v.008H12V10.5z" /></svg>Quadro de Pessoal</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
+                                <li>Avaliar quantidade de colaboradores.</li>
+                                <li>Testar conhecimento técnico da equipe.</li>
+                                <li>Observar habilidades para melhor posicionamento.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                             <h4 class="font-bold text-lg mb-3 flex items-center"><svg class="w-6 h-6 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h18M3 21h18" /></svg>Padrão e Arquitetura</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
+                                <li>Analisar dimensões e tipos de acessos.</li>
+                                <li>Verificar equipamentos operacionais.</li>
+                                <li>Identificar oportunidades de melhorias.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                            <h4 class="font-bold text-lg mb-3 flex items-center"><svg class="w-6 h-6 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12z" /></svg>Estudo para Definições</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
+                                <li>Definir postos de trabalho necessários.</li>
+                                <li>Criar rotinas e atividades para cada posto.</li>
+                                <li>Estabelecer cronogramas de higienização.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FASE D+1 -->
+                <div class="mb-16 p-8 bg-white rounded-lg shadow-lg section-fade-in">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-brand-red text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mr-6">D+1</div>
+                        <h3 class="text-2xl font-bold text-gray-900">Fase de Análise Humana</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">No primeiro dia pós-levantamento, o foco é entender a equipe atual, seu histórico e nível de satisfação para direcionar as próximas ações de treinamento e engajamento.</p>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                            <h4 class="font-bold text-lg mb-3 flex items-center"><svg class="w-6 h-6 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>Estudo do Quadro Operacional</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
+                                <li>Acessar PONTO WEB para informações relevantes.</li>
+                                <li>Analisar tempo de contrato e dados cadastrais.</li>
+                                <li>Verificar histórico disciplinar (faltas, atrasos).</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                            <h4 class="font-bold text-lg mb-3 flex items-center"><svg class="w-6 h-6 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>Entrevistas de Acolhimento</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
+                                <li>Realizar entrevistas individuais com a equipe.</li>
+                                <li>Aplicar perguntas básicas sobre a operação.</li>
+                                <li>Entender o estado de satisfação profissional.</li>
+                                <li>Registrar tudo para o planejamento do D+2.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FASE D+2 -->
+                <div class="mb-16 p-8 bg-white rounded-lg shadow-lg section-fade-in">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-brand-red text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mr-6">D+2</div>
+                        <h3 class="text-2xl font-bold text-gray-900">Fase de Aplicabilidade do Planejado</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Esta fase é dedicada à execução prática do que foi planejado, com foco total na implementação das Reuniões de Regramento Operacional (RROs) para estabelecer as novas regras e padrões.</p>
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-red-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span>Execução de DDS (Diálogo Diário de Segurança) com foco nas RROs.</span></li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-red-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span>As RROs estabelecem as regras-chave da operação.</span></li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-red-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span>O detalhamento de cada RRO pode ser consultado na seção "Documentos RRO".</span></li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-red-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span>O processo deve seguir a lógica apresentada para garantir o atingimento do objetivo.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FASE D+3 -->
+                <div class="p-8 bg-white rounded-lg shadow-lg section-fade-in">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-brand-red text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mr-6">D+3</div>
+                        <h3 class="text-2xl font-bold text-gray-900">Fase de Fechamento e Acompanhamento</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">A implantação não termina na aplicação. Um fechamento com avaliação e um acompanhamento contínuo garantem a estabilização e o sucesso da operação a longo prazo.</p>
+                    <div class="grid md:grid-cols-3 gap-8">
+                         <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                            <h4 class="font-bold text-lg mb-3 flex items-center"><svg class="w-6 h-6 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12" /></svg>Avaliação</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
+                                <li>Aplicar questionário sobre Rotinas e RROs.</li>
+                                <li>Dar nota ao desempenho da equipe (absorção, engajamento, etc.).</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                            <h4 class="font-bold text-lg mb-3 flex items-center"><svg class="w-6 h-6 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18" /></svg>Acompanhamento</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
+                                <li>Planejar retorno com meta definida.</li>
+                                <li>Estabelecer o "Antes & Depois".</li>
+                                <li>Manter contato semanal para verificar continuidade.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                            <h4 class="font-bold text-lg mb-3 flex items-center"><svg class="w-6 h-6 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" /></svg>Verificação</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
+                                <li>Realizar visita de avaliação na data definida.</li>
+                                <li>Extrair dados do sistema para comparação.</li>
+                                <li>Aplicar questionário de NPS da ação, se aplicável.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Documentos RRO -->
+        <section id="documentos-rro" class="py-20 bg-white section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Documentos de Regramento Operacional <span class="brand-red">(RRO)</span></h2>
+                    <p class="text-gray-600 mt-2">Procedimentos essenciais a serem aplicados na Fase D+2 para padronizar a operação.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- RRO 001 -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-t-4 border-brand-red">
+                        <h3 class="font-bold text-lg mb-3">RRO 001: Recebimento e Passagem de Serviço</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>TC1:</strong> Pátio Operacional.</li>
+                            <li><strong>TC2:</strong> Fundos e Valores.</li>
+                            <li><strong>TC3:</strong> Leituras e Tomada de Conhecimento.</li>
+                            <li><strong>TC4:</strong> Patrimônio Geral.</li>
+                            <li><strong>TC5:</strong> Material Carga (suprimentos).</li>
+                            <li class="mt-2 text-sm"><strong>Obs:</strong> A conferência de todos os itens é obrigatória e deve ser registrada.</li>
+                        </ul>
+                    </div>
+                    <!-- RRO 002 -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-t-4 border-brand-red">
+                        <h3 class="font-bold text-lg mb-3">RRO 002: Rotinas e Postos de Trabalho</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                             <li><strong>Temas:</strong> Rotinas diárias, criação de postos, higienização.</li>
+                             <li><strong>PT1 - Operador Controlador de Pátio (O.P.C):</strong> Foco na abordagem e comunicação.</li>
+                             <li><strong>PT2 - Operador Manobrista (O.P.M):</strong> Foco no balizamento e fiscalização do pátio.</li>
+                        </ul>
+                    </div>
+                    <!-- RRO 003 -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-t-4 border-brand-red">
+                        <h3 class="font-bold text-lg mb-3">RRO 003: Comunicação Operacional</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Faltas e Atrasos:</strong> Informar via ligação de voz.</li>
+                            <li><strong>Erros de Operação:</strong> Ligar e enviar mensagem para a liderança.</li>
+                            <li><strong>Abertura/Fechamento:</strong> Mensagem coletiva no grupo.</li>
+                        </ul>
+                    </div>
+                    <!-- DDS Segurança -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-t-4 border-gray-700">
+                        <h3 class="font-bold text-lg mb-3">DDS: Segurança no Pátio</h3>
+                        <p class="text-gray-600 mb-2">Procedimentos para situações de risco:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>Veículo com princípio de fogo ou vazamento.</li>
+                            <li>Veículo com defeito ou vidro aberto.</li>
+                            <li>Dano não reportado na avaria.</li>
+                            <li>Veículo sem chave ou com chave perdida.</li>
+                        </ul>
+                    </div>
+                     <!-- DDS Outros -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-t-4 border-gray-700">
+                        <h3 class="font-bold text-lg mb-3">DDS/RRO: Outros Procedimentos</h3>
+                         <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong>Achados e Perdidos:</strong> Como registrar, tempo de guarda e responsabilidades.</li>
+                            <li class="mt-2"><strong>Problemas com Mensalistas:</strong> Como informar e resolver problemas comuns (inadimplência, etc.).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Rotinas do Líder -->
+        <section id="rotinas-lider" class="py-20 bg-gray-100 section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Rotinas e Checklists do Líder</h2>
+                    <p class="text-gray-600 mt-2">Ações e verificações essenciais para a excelência na gestão diária das operações.</p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Ações Diárias -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="font-bold text-xl mb-4 text-gray-800 border-b pb-3">Ações Diárias do Líder de Serviço</h3>
+                        <ol class="space-y-4 text-gray-700">
+                            <li class="flex items-start"><span class="font-bold text-red-500 mr-3 text-lg">1.</span><span>Executar seu próprio checklist com base na tipicidade da operação.</span></li>
+                            <li class="flex items-start"><span class="font-bold text-red-500 mr-3 text-lg">2.</span><span>Verificar as rotinas de trabalho dos operadores e seus postos.</span></li>
+                            <li class="flex items-start"><span class="font-bold text-red-500 mr-3 text-lg">3.</span><span>Estar atento às informações e escutativas diárias com as equipes.</span></li>
+                            <li class="flex items-start"><span class="font-bold text-red-500 mr-3 text-lg">4.</span><span>Promover o treinamento contínuo com todos os integrantes.</span></li>
+                            <li class="flex items-start"><span class="font-bold text-red-500 mr-3 text-lg">5.</span><span>Em DDS, focar em: ocorrências, qualidade no atendimento e atingimento da meta semanal.</span></li>
+                            <li class="flex items-start"><span class="font-bold text-red-500 mr-3 text-lg">6.</span><span>Corrigir erros, informar e manter suas rotinas de gestão em dia (resumos, escalas, etc.).</span></li>
+                        </ol>
+                    </div>
+                    <!-- Checklist Operacional -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="font-bold text-xl mb-4 text-gray-800 border-b pb-3">Checklist Operacional</h3>
+                        <div class="space-y-2" id="checklist-accordion">
+                            <!-- Accordion Item 1 -->
+                            <div class="border-b">
+                                <button class="accordion-header w-full flex justify-between items-center py-4 text-left font-semibold text-lg text-red-500">
+                                    <span>Gestão Indireta (Ao entrar no estacionamento)</span>
+                                    <svg class="w-5 h-5 transform transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                                </button>
+                                <div class="accordion-content pb-4 pt-2">
+                                    <ol class="list-decimal list-inside space-y-3 text-gray-700">
+                                        <li>Observe a sinalização e apresentação da unidade. Cumprimente a todos.</li>
+                                        <li>Pergunte se está tudo bem e se há alguma necessidade.</li>
+                                        <li>Solicite um relatório de pátio para fiscalização (rotina obrigatória).</li>
+                                        <li>Acompanhe a contagem dos fundos de valores e a assinatura do livro de serviço.</li>
+                                        <li>No pátio, levante necessidades de infraestrutura (iluminação, pintura, etc.).</li>
+                                        <li>Corrija erros identificados, dê exemplos e aplique RROs ou informe a gerência.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!-- Accordion Item 2 -->
+                             <div class="border-b">
+                                <button class="accordion-header w-full flex justify-between items-center py-4 text-left font-semibold text-lg text-red-500">
+                                    <span>Gestão Direta (Ao entrar no estacionamento)</span>
+                                    <svg class="w-5 h-5 transform transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                                </button>
+                                <div class="accordion-content pb-4 pt-2">
+                                    <ol class="list-decimal list-inside space-y-3 text-gray-700">
+                                        <li>Execute seu checklist diário ao chegar na operação.</li>
+                                        <li>Defina a meta da semana e motive a equipe com premiações.</li>
+                                        <li>Avalie resultados e informe no resumo semanal.</li>
+                                        <li>Realize visitas operacionais de rotina e levante dados da concorrência.</li>
+                                        <li>Confira os caixas para fiscalizar e manter controle da produção.</li>
+                                        <li>Mantenha as equipes orientadas e execute o giro diário (manhã e tarde).</li>
+                                        <li>Acompanhe horas extras, banco de horas e faltas semanalmente.</li>
+                                        <li>Mantenha avaliações e testes operacionais para nivelar o conhecimento.</li>
+                                        <li>Mantenha o fluxo de e-mails informativos para os setores corretos.</li>
+                                        <li>Estabeleça metas, verifique os resultados e zele pela reputação da empresa.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Metas -->
+        <section id="metas" class="py-20 bg-gray-900 text-white section-fade-in">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-3xl font-bold mb-12">Nossas Metas com Este Processo</h2>
+                 <div class="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                     <div class="bg-gray-800 p-6 rounded-lg flex flex-col items-center justify-center">
+                         <svg class="w-10 h-10 mb-3 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                         <p>Padrão de implantação fácil</p>
+                     </div>
+                     <div class="bg-gray-800 p-6 rounded-lg flex flex-col items-center justify-center">
+                        <svg class="w-10 h-10 mb-3 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.745 3.745 0 013.296-1.043A3.745 3.745 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.745 3.745 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
+                         <p>Qualidade institucional</p>
+                     </div>
+                     <div class="bg-gray-800 p-6 rounded-lg flex flex-col items-center justify-center">
+                         <svg class="w-10 h-10 mb-3 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                         <p>Melhor controle das ações</p>
+                     </div>
+                     <div class="bg-gray-800 p-6 rounded-lg flex flex-col items-center justify-center">
+                         <svg class="w-10 h-10 mb-3 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>
+                         <p>Comunicação otimizada</p>
+                     </div>
+                     <div class="bg-gray-800 p-6 rounded-lg flex flex-col items-center justify-center">
+                         <svg class="w-10 h-10 mb-3 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>
+                         <p>Feedbacks precisos</p>
+                     </div>
+                     <div class="bg-gray-800 p-6 rounded-lg flex flex-col items-center justify-center">
+                        <svg class="w-10 h-10 mb-3 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                         <p>Menor custo operacional</p>
+                     </div>
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-black text-white">
+        <div class="container mx-auto px-6 py-12 text-center">
+            <h3 class="text-2xl font-bold">SAFETY PARK ESTACIONAMENTOS</h3>
+            <p class="mt-4 text-gray-400 max-w-2xl mx-auto">
+                Estamos em constante desenvolvimento para melhorar nossas práticas. Desenvolver nossas atividades com mais eficiência sempre será fruto de sacrifícios e muita persistência. Contamos com todos na execução e melhoramento deste planejamento.
+            </p>
+            <p class="mt-6 text-sm text-gray-500">DEPARTAMENTO OPERACIONAL</p>
+            <div class="mt-8 border-t border-gray-800 pt-8">
+                <p class="text-gray-500">&copy; 2024 Safety Park. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Script para navegação suave e fechar menu mobile
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if(target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+
+                    // Fecha menus ao clicar em um link
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    const desktopDropdown = document.getElementById('desktop-dropdown');
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                     if (desktopDropdown && !desktopDropdown.classList.contains('hidden')) {
+                        desktopDropdown.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Script para animação de fade-in ao rolar
+            const sections = document.querySelectorAll('.section-fade-in');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Script para Accordion
+            const accordionContainer = document.getElementById('checklist-accordion');
+            if (accordionContainer) {
+                const headers = accordionContainer.querySelectorAll('.accordion-header');
+                headers.forEach(header => {
+                    header.addEventListener('click', () => {
+                        const content = header.nextElementSibling;
+                        const icon = header.querySelector('svg');
+                        
+                        const isOpening = !content.style.maxHeight;
+
+                        // Fecha todos os outros abertos
+                        headers.forEach(otherHeader => {
+                            otherHeader.nextElementSibling.style.maxHeight = null;
+                            otherHeader.querySelector('svg').classList.remove('rotate-180');
+                        });
+                        
+                        // Abre ou fecha o clicado
+                        if (isOpening) {
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                            icon.classList.add('rotate-180');
+                        }
+                    });
+                });
+            }
+
+            // --- Lógica do Novo Menu ---
+            const desktopBtn = document.getElementById('desktop-menu-btn');
+            const desktopDropdown = document.getElementById('desktop-dropdown');
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Toggle Desktop Dropdown
+            if (desktopBtn) {
+                desktopBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    desktopDropdown.classList.toggle('hidden');
+                });
+            }
+
+            // Toggle Mobile Menu
+            if (mobileBtn) {
+                mobileBtn.addEventListener('click', (e) => {
+                     e.stopPropagation();
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Fecha menus ao clicar fora
+            window.addEventListener('click', (e) => {
+                if (desktopDropdown && !desktopDropdown.classList.contains('hidden') && !desktopBtn.contains(e.target)) {
+                    desktopDropdown.classList.add('hidden');
+                }
+                 if (mobileMenu && !mobileMenu.classList.contains('hidden') && !mobileBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
